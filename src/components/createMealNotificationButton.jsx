@@ -94,20 +94,25 @@ const TimeForm = ({ meal, close, setDate }) => {
     });
   };
   return (
-    <View>
+    <View
+      style={{
+        gap: 10,
+      }}
+    >
+      <Tip>{getMealTip(meal.value)}</Tip>
+      <Text style={{ color: "white", fontSize: 24, alignSelf: "center" }}>
+        Выбранное время: {formatTime(selected)}
+      </Text>
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
           value={selected}
+          style={{ alignSelf: "center" }}
           mode={"time"}
           is24Hour={true}
           onChange={onChange}
         />
       )}
-      <Tip>{getMealTip(meal.value)}</Tip>
-      <Text style={{ color: "white", fontSize: 24, alignSelf: "center" }}>
-        Выбранное время: {formatTime(selected)}
-      </Text>
       <Button onPress={() => setShow(true)}>Установить время</Button>
       <Button onPress={saveTime}>Сохранить</Button>
     </View>
