@@ -1,5 +1,9 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
-import { darkGreenColor, greenColor } from "../constants/Colors";
+import {
+  darkGreenColor,
+  greenColor,
+  lightGreenColor,
+} from "../constants/Colors";
 
 export const Button = ({
   children,
@@ -7,6 +11,7 @@ export const Button = ({
   className,
   variant = "primary",
   loading,
+  position,
   ...pressableProps
 }) => {
   return (
@@ -19,6 +24,7 @@ export const Button = ({
           ...{
             primary: styles.primary(disabled),
             outlined: styles.outlined(disabled),
+            float: styles.float(position),
           }[variant],
         },
       ]}
@@ -56,6 +62,11 @@ const styles = StyleSheet.create({
   outlined: (disabled) => ({
     backgroundColor: disabled ? "gray" : "white",
     color: darkGreenColor,
+  }),
+  float: (position) => ({
+    backgroundColor: lightGreenColor,
+    position: "absolute",
+    ...position,
   }),
   text: {
     fontSize: 16,

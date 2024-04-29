@@ -1,19 +1,13 @@
 import { Stack } from "expo-router";
 import React from "react";
-import { ScrollView, Text } from "react-native";
-import { Container, ListItem, Subtitle, Title } from "../../shared/ui";
+import { Text } from "react-native";
+import { Container, Content, ListItem, Subtitle, Title } from "../../shared/ui";
 
 export default function About() {
   return (
     <Container>
       <Stack.Screen options={{ title: "Инфо:" }} />
-      <ScrollView
-        contentContainerStyle={{
-          backgroundColor: "white",
-          padding: 8,
-          borderRadius: 10,
-        }}
-      >
+      <Content>
         <Title>Что такое панкреатит?</Title>
         <Text style={{ color: "red" }}>
           Панкреатит — это воспаление поджелудочной железы (один из серьезных и
@@ -159,7 +153,7 @@ export default function About() {
           противопоказано при панкреатите, поэтому от лечения в домашних
           условиях с применением фито препаратов противопоказано!!!  
         </Text>
-      </ScrollView>
+      </Content>
     </Container>
   );
 }

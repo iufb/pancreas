@@ -1,19 +1,13 @@
 import { Stack } from "expo-router";
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
-import { Container, ListItem, Subtitle, Title } from "../../shared/ui";
+import { Text, View } from "react-native";
+import { Container, Content, ListItem, Subtitle, Title } from "../../shared/ui";
 
 export default function About() {
   return (
     <Container>
       <Stack.Screen options={{ headerTitle: "Диета" }} />
-      <ScrollView
-        contentContainerStyle={{
-          backgroundColor: "white",
-          padding: 8,
-          borderRadius: 10,
-        }}
-      >
+      <Content>
         <Title>Зачем нужна диета </Title>
         <Text>
           Правильность организации режима питания играет определяющую роль при
@@ -209,7 +203,7 @@ export default function About() {
             <Text>{m.tip}</Text>
           </View>
         ))}
-      </ScrollView>
+      </Content>
     </Container>
   );
 }
