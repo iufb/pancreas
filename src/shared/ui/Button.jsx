@@ -5,6 +5,7 @@ export const Button = ({
   children,
   disabled,
   className,
+  variant = "primary",
   loading,
   ...pressableProps
 }) => {
@@ -15,15 +16,28 @@ export const Button = ({
         className,
         {
           ...styles.container,
-          backgroundColor: disabled ? darkGreenColor : greenColor,
+          ...{
+            primary: styles.primary(disabled),
+            outlined: styles.outlined(disabled),
+          }[variant],
         },
       ]}
       disabled={disabled}
     >
       {loading ? (
-        <ActivityIndicator size={"small"} color={"white"} />
+        <ActivityIndicator
+          size={"small"}
+          color={variant == "primary" ? "white" : darkGreenColor}
+        />
       ) : (
-        <Text style={styles.text}>{children}</Text>
+        <Text
+          style={[
+            styles.text,
+            variant == "primary" ? styles.lightText : styles.darkText,
+          ]}
+        >
+          {children}
+        </Text>
       )}
     </Pressable>
   );
@@ -36,11 +50,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
   },
+  primary: (disabled) => ({
+    backgroundColor: disabled ? darkGreenColor : greenColor,
+  }),
+  outlined: (disabled) => ({
+    backgroundColor: disabled ? "gray" : "white",
+    color: darkGreenColor,
+  }),
   text: {
     fontSize: 16,
     fontWeight: "600",
-    color: "white",
   },
+  lightText: { color: "white" },
+  darkText: { color: darkGreenColor },
   disabled: {
     opacity: 50,
   },

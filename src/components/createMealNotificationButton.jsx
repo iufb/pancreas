@@ -2,6 +2,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useRef, useState } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { greenColor } from "../shared/constants/Colors";
+import { useToast } from "../shared/providers";
 import { Button, Icon, Tip, Title } from "../shared/ui";
 import {
   cancelScheduledNotification,
@@ -69,6 +70,7 @@ const CreateNotificationModal = ({ meal, open, close, setDate }) => {
 const TimeForm = ({ meal, close, setDate }) => {
   const [selected, setSelected] = useState(new Date());
   const [show, setShow] = useState(false);
+  const { sendToast } = useToast();
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
@@ -90,6 +92,7 @@ const TimeForm = ({ meal, close, setDate }) => {
     });
 
     setItem(meal.value, { date: selected, notId: id }).then(() => {
+      sendToast("Напоминание про " + meal.label + " создано!");
       close();
     });
   };
@@ -113,8 +116,16 @@ const TimeForm = ({ meal, close, setDate }) => {
           onChange={onChange}
         />
       )}
-      <Button onPress={() => setShow(true)}>Установить время</Button>
-      <Button onPress={saveTime}>Сохранить</Button>
+      <Button
+        variant="outlined"
+        style={{ marginTop: 10 }}
+        onPress={() => setShow(true)}
+      >
+        Установить время
+      </Button>
+      <Button variant="outlined" onPress={saveTime}>
+        Сохранить
+      </Button>
     </View>
   );
 };

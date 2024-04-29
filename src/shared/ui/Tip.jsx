@@ -13,7 +13,7 @@ export const Tip = ({ children }) => {
         flexDirection: "row",
         gap: 10,
         alignItems: "center",
-        justifyContent: "space-around",
+        gap: 30,
       }}
     >
       <Icon color="white" name={"info"} size={20} />

@@ -6,6 +6,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
 import * as Notifications from "expo-notifications";
+import { ToastProvider } from "../shared/providers";
+import { Toast } from "../shared/ui";
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -51,8 +53,11 @@ Notifications.setNotificationHandler({
 });
 function RootLayoutNav() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <ToastProvider>
+      <Toast />
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </ToastProvider>
   );
 }
