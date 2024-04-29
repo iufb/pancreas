@@ -42,17 +42,29 @@ export async function cancelScheduledNotification(id) {
 export const getMealTip = (meal) => {
   switch (meal) {
     case "breakfast":
-      return mealPlans[randomNumber(0, mealPlans.length)].meals[0];
+      return mealPlans[randomNumber(0, mealPlans.length)].meals[0].split(
+        "."
+      )[1];
     case "snack1":
-      return mealPlans[randomNumber(0, mealPlans.length)].meals[1];
+      return mealPlans[randomNumber(0, mealPlans.length)].meals[1].split(
+        "."
+      )[1];
     case "lunch":
-      return mealPlans[randomNumber(0, mealPlans.length)].meals[2];
+      return mealPlans[randomNumber(0, mealPlans.length)].meals[2].split(
+        "."
+      )[1];
     case "snack2":
-      return mealPlans[randomNumber(0, mealPlans.length)].meals[3];
+      return mealPlans[randomNumber(0, mealPlans.length)].meals[3].split(
+        "."
+      )[1];
     case "dinner":
-      return mealPlans[randomNumber(0, mealPlans.length)].meals[4];
+      return mealPlans[randomNumber(0, mealPlans.length)].meals[4].split(
+        "."
+      )[1];
     case "snack3":
-      return mealPlans[randomNumber(0, mealPlans.length)].meals[5];
+      return mealPlans[randomNumber(0, mealPlans.length)].meals[5].split(
+        "."
+      )[1];
   }
 };
 

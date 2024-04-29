@@ -10,7 +10,6 @@ export const Meal = ({ meal }) => {
     const getSavedTime = async () => {
       const time = await getItem(meal.value);
       if (time) {
-        console.log(meal.value, time);
         setTime(time.date);
       }
     };

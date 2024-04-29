@@ -83,7 +83,7 @@ const TimeForm = ({ meal, close, setDate }) => {
     const id = await sendSchedulePushNotification({
       content: {
         title: meal.label,
-        body: "Время приема пищи!",
+        body: getMealTip(meal.value),
       },
       hour: selected.getHours(),
       minute: selected.getMinutes(),
