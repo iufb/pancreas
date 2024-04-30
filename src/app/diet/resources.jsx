@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 import React from "react";
 import { Linking, Text, TouchableOpacity, View } from "react-native";
 import { darkGreenColor, greenColor } from "../../shared/constants/Colors";
-import { Container, Title } from "../../shared/ui";
+import { Back, Container, Title } from "../../shared/ui";
 
 export default function Resources() {
   const handleOpenRemoteLink = (link) => {
@@ -10,7 +10,13 @@ export default function Resources() {
   };
   return (
     <Container>
-      <Stack.Screen options={{ title: "Инфо" }} />
+      <Stack.Screen
+        options={{
+          title: "Диета",
+          headerBackVisible: false,
+          headerLeft: () => <Back />,
+        }}
+      />
       <Title>Лекции:</Title>
       <View style={{ gap: 10 }}>
         {youtubeLinks.map((v, idx) => (

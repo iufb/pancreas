@@ -38,14 +38,24 @@ const Pressure = ({ changeStats }) => {
   return (
     <View style={{ gap: 40 }}>
       <Title style={{ color: "white" }}>Давление и пульс:</Title>
-      <Input label="Систолическое давление" value={sis} onChangeText={setSis} />
+      <Input
+        keyboardType="numeric"
+        label="Систолическое давление"
+        value={sis}
+        onChangeText={setSis}
+      />
       <Input
         keyboardType="numeric"
         label="Диaстолическое давление"
         value={dis}
         onChangeText={setDis}
       />
-      <Input label="Пульс" value={pulse} onChangeText={setPulse} />
+      <Input
+        keyboardType="numeric"
+        label="Пульс"
+        value={pulse}
+        onChangeText={setPulse}
+      />
 
       <Button
         icon="plus"

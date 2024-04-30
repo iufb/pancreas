@@ -2,12 +2,18 @@ import { Stack } from "expo-router";
 import React from "react";
 import { ScrollView } from "react-native";
 import { Meal } from "../../components";
-import { Container, Tip } from "../../shared/ui";
+import { Back, Container, Tip } from "../../shared/ui";
 
 export default function Meals() {
   return (
     <Container>
-      <Stack.Screen options={{ title: "Уведомления: приемы пищи" }} />
+      <Stack.Screen
+        options={{
+          title: "Уведомления: приемы пищи",
+          headerBackVisible: false,
+          headerLeft: () => <Back />,
+        }}
+      />
       <Tip>Интервал между приемами пищи минимум 3 часа.</Tip>
       <ScrollView
         contentContainerStyle={{

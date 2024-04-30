@@ -1,11 +1,17 @@
 import { Stack } from "expo-router";
 import { HealthDataTable } from "../../components";
-import { Container, Title } from "../../shared/ui";
+import { Back, Container, Title } from "../../shared/ui";
 
 const Stats = () => {
   return (
     <Container>
-      <Stack.Screen options={{ title: "Здоровье:" }} />
+      <Stack.Screen
+        options={{
+          title: "Здоровье:",
+          headerBackVisible: false,
+          headerLeft: () => <Back />,
+        }}
+      />
 
       <Title>Статистика:</Title>
       <HealthDataTable />

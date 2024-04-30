@@ -1,12 +1,25 @@
 import { Stack } from "expo-router";
 import React from "react";
 import { Text } from "react-native";
-import { Container, Content, ListItem, Subtitle, Title } from "../../shared/ui";
+import {
+  Back,
+  Container,
+  Content,
+  ListItem,
+  Subtitle,
+  Title,
+} from "../../shared/ui";
 
 export default function About() {
   return (
     <Container>
-      <Stack.Screen options={{ title: "Инфо:" }} />
+      <Stack.Screen
+        options={{
+          title: "Инфо:",
+          headerBackVisible: false,
+          headerLeft: () => <Back />,
+        }}
+      />
       <Content>
         <Title>Что такое панкреатит?</Title>
         <Text style={{ color: "red" }}>

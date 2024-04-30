@@ -1,12 +1,25 @@
 import { Stack } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
-import { Container, Content, ListItem, Subtitle, Title } from "../../shared/ui";
+import {
+  Back,
+  Container,
+  Content,
+  ListItem,
+  Subtitle,
+  Title,
+} from "../../shared/ui";
 
 export default function About() {
   return (
     <Container>
-      <Stack.Screen options={{ headerTitle: "Диета" }} />
+      <Stack.Screen
+        options={{
+          headerTitle: "Диета",
+          headerBackVisible: false,
+          headerLeft: () => <Back />,
+        }}
+      />
       <Content>
         <Title>Зачем нужна диета </Title>
         <Text>
