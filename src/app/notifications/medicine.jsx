@@ -32,7 +32,14 @@ export default function Medicine() {
 
       <Content refresh={getSavedMedicines}>
         {medicines.length > 0 ? (
-          medicines.map((m, idx) => <MedicineView key={idx} medicine={m} />)
+          medicines.map((m, idx) => (
+            <MedicineView
+              data={medicines}
+              getMeds={getSavedMedicines}
+              key={idx}
+              medicine={m}
+            />
+          ))
         ) : (
           <View>
             <Text style={{ fontSize: 22, color: "gray" }}>
@@ -41,7 +48,7 @@ export default function Medicine() {
           </View>
         )}
       </Content>
-      <CreateMedicineNotificationButton />
+      <CreateMedicineNotificationButton getMeds={getSavedMedicines} />
     </Container>
   );
 }

@@ -9,6 +9,9 @@ export const getItem = async (key) => {
   const item = JSON.parse(await Storage.getItem({ key }));
   return item;
 };
+export const removeItem = async (key) => {
+  return Storage.removeItem({ key });
+};
 export function formatTime(value) {
   // Create a new Date object
 

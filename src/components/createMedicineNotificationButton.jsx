@@ -11,7 +11,7 @@ import {
   setItem,
 } from "../shared/utils";
 
-export const CreateMedicineNotificationButton = () => {
+export const CreateMedicineNotificationButton = ({ getMeds }) => {
   const [data, setData] = useState({});
   const [step, setStep] = useState(1);
   const { sendToast } = useToast();
@@ -74,6 +74,8 @@ export const CreateMedicineNotificationButton = () => {
               setItem("meds", meds).then(() => {
                 sendToast("Напоминание про " + data.name + " создано!");
                 setShow(false);
+                getMeds();
+                setData({});
               });
             } else {
               setStep(step + 1);
