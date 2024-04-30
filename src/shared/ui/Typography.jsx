@@ -11,11 +11,11 @@ export const Title = ({ children, style, ...props }) => {
 export const Subtitle = ({ children, style }) => (
   <Text style={[styles.subtitle, style]}>{children}</Text>
 );
-export const ListItem = ({ content }) => {
+export const ListItem = ({ content, color }) => {
   return (
     <View style={styles.listItem}>
-      <Text style={styles.bullet}>&#8226;</Text>
-      <Text>{content}</Text>
+      <Text style={[styles.bullet, { color }]}>&#8226;</Text>
+      <Text style={{ color }}>{content}</Text>
     </View>
   );
 };
