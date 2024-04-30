@@ -1,9 +1,8 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useRef, useState } from "react";
-import { Modal, Pressable, Text, View } from "react-native";
-import { greenColor } from "../shared/constants/Colors";
+import { useState } from "react";
+import { Text, View } from "react-native";
 import { useToast } from "../shared/providers";
-import { Button, Icon, Tip, Title } from "../shared/ui";
+import { Button, Icon, Modal, Tip, Title } from "../shared/ui";
 import {
   cancelScheduledNotification,
   formatTime,
@@ -30,39 +29,12 @@ export const CreateMealNotificationButton = ({ meal, setDate }) => {
 };
 
 const CreateNotificationModal = ({ meal, open, close, setDate }) => {
-  const ref = useRef();
   return (
-    <Modal
-      transparent
-      animationType="slide"
-      onRequestClose={close}
-      visible={open}
-    >
-      <View
-        ref={ref}
-        style={{
-          position: "absolute",
-          top: "20%",
-          left: 20,
-          right: 20,
-          bottom: "40%",
-          backgroundColor: greenColor,
-          padding: 20,
-          borderRadius: 20,
-          justifyContent: "space-around",
-        }}
-      >
-        <Pressable
-          style={{ position: "absolute", right: 20, top: 20 }}
-          onPress={close}
-        >
-          <Icon name={"close"} color="white" size={24} />
-        </Pressable>
-        <Title style={{ color: "white", alignSelf: "center" }}>
-          {meal.label}
-        </Title>
-        <TimeForm setDate={setDate} meal={meal} close={close} />
-      </View>
+    <Modal open={open} close={close}>
+      <Title style={{ color: "white", alignSelf: "center" }}>
+        {meal.label}
+      </Title>
+      <TimeForm setDate={setDate} meal={meal} close={close} />
     </Modal>
   );
 };

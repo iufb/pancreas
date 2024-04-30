@@ -8,6 +8,7 @@ import {
 export const Button = ({
   children,
   disabled,
+  color,
   className,
   variant = "primary",
   loading,
@@ -25,6 +26,7 @@ export const Button = ({
             primary: styles.primary(disabled),
             outlined: styles.outlined(disabled),
             float: styles.float(position),
+            select: styles.select(color),
           }[variant],
         },
       ]}
@@ -40,6 +42,9 @@ export const Button = ({
           style={[
             styles.text,
             variant == "primary" ? styles.lightText : styles.darkText,
+            variant == "select" && {
+              color: color == darkGreenColor ? "white" : darkGreenColor,
+            },
           ]}
         >
           {children}
@@ -67,6 +72,9 @@ const styles = StyleSheet.create({
     backgroundColor: lightGreenColor,
     position: "absolute",
     ...position,
+  }),
+  select: (color) => ({
+    backgroundColor: color,
   }),
   text: {
     fontSize: 16,
