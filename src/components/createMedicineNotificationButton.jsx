@@ -38,10 +38,19 @@ export const CreateMedicineNotificationButton = ({ getMeds }) => {
         <View
           style={{
             height: 4,
-            backgroundColor: "white",
-            width: `${33.3 * step}%`,
+            backgroundColor: "gray",
+            borderRadius: 10,
           }}
-        ></View>
+        >
+          <View
+            style={{
+              height: 4,
+              backgroundColor: "white",
+              width: `${33.3 * step}%`,
+              borderRadius: 10,
+            }}
+          ></View>
+        </View>
         <Button
           variant="outlined"
           onPress={async () => {
