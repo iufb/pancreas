@@ -1,6 +1,7 @@
 import Storage from "expo-storage";
 
 import * as Notifications from "expo-notifications";
+import { Platform } from "react-native";
 import { mealPlans } from "../../app/diet/about";
 export const setItem = async (key, value) => {
   return Storage.setItem({ key, value: JSON.stringify(value) });
@@ -42,6 +43,7 @@ export async function sendSchedulePushNotification({ content, hour, minute }) {
       hour, // set Hours like date.getHours()
       minute, // set Minutes like date.getMinutes()
       repeats: true,
+      sound: Platform.OS === "android" ? null : "default",
     },
   });
   return id;
