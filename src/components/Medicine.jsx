@@ -20,7 +20,9 @@ export const MedicineView = ({ data, medicine, getMeds }) => {
         variant="primary"
         onPress={() => {
           medicine.nots.forEach(async (n) => {
-            await cancelScheduledNotification(n);
+            if (n) {
+              await cancelScheduledNotification(n);
+            }
           });
           setItem(
             "meds",

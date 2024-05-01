@@ -9,7 +9,7 @@ export default function Meals() {
     <Container>
       <Stack.Screen
         options={{
-          title: "Уведомления: приемы пищи",
+          title: "Уведомления",
           headerBackVisible: false,
           headerLeft: () => <Back />,
         }}

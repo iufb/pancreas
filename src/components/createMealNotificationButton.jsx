@@ -58,6 +58,7 @@ const TimeForm = ({ meal, close, setDate }) => {
       content: {
         title: meal.label,
         body: getMealTip(meal.value),
+        data: { url: "/diet/about" },
       },
       hour: selected.getHours(),
       minute: selected.getMinutes(),

@@ -24,7 +24,7 @@ export default function Medicine() {
     <Container>
       <Stack.Screen
         options={{
-          title: "Уведомления: приемы лекарств",
+          title: "Уведомления",
           headerBackVisible: false,
           headerLeft: () => <Back />,
         }}

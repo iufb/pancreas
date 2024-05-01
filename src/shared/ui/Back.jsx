@@ -6,7 +6,12 @@ import { Icon } from "./Icon";
 export const Back = () => {
   return (
     <TouchableOpacity
-      style={{ gap: 2, flexDirection: "row", alignItems: "center" }}
+      style={{
+        gap: 4,
+        flexDirection: "row",
+        alignItems: "center",
+        marginRight: 4,
+      }}
       onPress={() => router.back()}
     >
       <Icon name={"backward"} color={"black"} size={20} />

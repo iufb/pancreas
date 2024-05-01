@@ -62,6 +62,7 @@ export default function Health() {
         </Link>
         <Modal
           open={showRes}
+          close={() => setShowRes(false)}
           full
           visible={showRes}
           onDismiss={() => setShowRes(false)}

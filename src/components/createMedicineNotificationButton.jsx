@@ -16,6 +16,45 @@ export const CreateMedicineNotificationButton = ({ getMeds }) => {
   const [step, setStep] = useState(1);
   const { sendToast } = useToast();
   const [show, setShow] = useState(false);
+  const handleSubmit = async () => {
+    if (step == 3) {
+      const firstNotId = await sendSchedulePushNotification({
+        content: {
+          title: "Примите лекарство",
+          body: `${data.name} - ${data.count} шт.`,
+          data: { url: "/notifications/medicine" },
+        },
+        hour: data.first.getHours(),
+        minute: data.first.getMinutes(),
+      });
+      let secondNotId;
+      if (data.second) {
+        secondNotId = await sendSchedulePushNotification({
+          content: {
+            title: "Примите лекарство",
+            body: `${data.name} - ${data.count} шт.`,
+            data: { url: "/notifications/medicine" },
+          },
+          hour: data.second.getHours(),
+          minute: data.second.getMinutes(),
+        });
+      }
+      let meds = await getItem("meds");
+      if (!meds) {
+        meds = [{ ...data, nots: [firstNotId, secondNotId] }];
+      } else {
+        meds.push({ ...data, nots: [firstNotId, secondNotId] });
+      }
+      setItem("meds", meds).then(() => {
+        sendToast("Напоминание про " + data.name + " создано!");
+        setShow(false);
+        getMeds();
+        setData({});
+      });
+    } else {
+      setStep(step + 1);
+    }
+  };
 
   return (
     <>
@@ -51,48 +90,23 @@ export const CreateMedicineNotificationButton = ({ getMeds }) => {
             }}
           ></View>
         </View>
-        <Button
-          variant="outlined"
-          onPress={async () => {
-            if (step == 3) {
-              const firstNotId = await sendSchedulePushNotification({
-                content: {
-                  title: "Примите лекарство",
-                  body: `${data.name} - ${data.count} шт.`,
-                },
-                hour: data.first.getHours(),
-                minute: data.first.getMinutes(),
-              });
-              let secondNotId;
-              if (data.second) {
-                secondNotId = await sendSchedulePushNotification({
-                  content: {
-                    title: "Примите лекарство",
-                    body: `${data.name} - ${data.count} шт.`,
-                  },
-                  hour: data.second.getHours(),
-                  minute: data.second.getMinutes(),
-                });
-              }
-              let meds = await getItem("meds");
-              if (!meds) {
-                meds = [{ ...data, nots: [firstNotId, secondNotId] }];
-              } else {
-                meds.push({ ...data, nots: [firstNotId, secondNotId] });
-              }
-              setItem("meds", meds).then(() => {
-                sendToast("Напоминание про " + data.name + " создано!");
-                setShow(false);
-                getMeds();
-                setData({});
-              });
-            } else {
-              setStep(step + 1);
-            }
-          }}
-        >
-          {step == 3 ? "Сохранить" : "Далее"}
-        </Button>
+        <View style={{ flexDirection: "row", gap: 5 }}>
+          <Button
+            onPress={() => setStep(step - 1)}
+            disabled={step == 1}
+            className={{ flex: 1 }}
+            variant="outlined"
+          >
+            Назад
+          </Button>
+          <Button
+            className={{ flex: 1 }}
+            variant="outlined"
+            onPress={handleSubmit}
+          >
+            {step == 3 ? "Сохранить" : "Далее"}
+          </Button>
+        </View>
       </Modal>
     </>
   );
