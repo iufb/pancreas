@@ -1,6 +1,6 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 import { useToast } from "../shared/providers";
 import { Button, Icon, Modal, Tip, Title } from "../shared/ui";
 import {
@@ -69,6 +69,34 @@ const TimeForm = ({ meal, close, setDate }) => {
       close();
     });
   };
+  const showDatePicker = () => {
+    if (Platform.OS === "android") {
+      return (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={selected}
+          style={{ alignSelf: "center" }}
+          mode={"time"}
+          is24Hour={true}
+          onChange={onChange}
+        />
+      );
+    } else {
+      return (
+        <View style={{ flexDirection: "row", gap: 5, alignItems: "center" }}>
+          <Text style={{ color: "white" }}>Нажмите справа на таймер</Text>
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={selected}
+            style={{ alignSelf: "center" }}
+            mode={"time"}
+            is24Hour={true}
+            onChange={onChange}
+          />
+        </View>
+      );
+    }
+  };
   return (
     <View
       style={{
@@ -79,19 +107,10 @@ const TimeForm = ({ meal, close, setDate }) => {
       <Text style={{ color: "white", fontSize: 24, alignSelf: "center" }}>
         Выбранное время: {formatTime(selected)}
       </Text>
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={selected}
-          style={{ alignSelf: "center" }}
-          mode={"time"}
-          is24Hour={true}
-          onChange={onChange}
-        />
-      )}
+      {show && showDatePicker()}
       <Button
         variant="outlined"
-        style={{ marginTop: 10 }}
+        style={{ marginTop: 20 }}
         onPress={() => setShow(true)}
       >
         Установить время

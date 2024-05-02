@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { CreateHealthRecordButton } from "../../components";
 import { useToast } from "../../shared/providers";
-import { Button, Container, Modal, Title } from "../../shared/ui";
+import { Button, Container, Modal, Tip, Title } from "../../shared/ui";
 import { getCurrentDate, getItem, setItem } from "../../shared/utils";
 
 export default function Health() {
@@ -30,6 +30,10 @@ export default function Health() {
           borderRadius: 20,
         }}
       >
+        <Tip>
+          Здесь Вы можете отметить Ваше состояние по категориям, указанными
+          ниже.
+        </Tip>
         <Title style={{ color: "black" }}>{getCurrentDate()}</Title>
         {symptoms.map((s, idx) => (
           <View key={s.eng}>
