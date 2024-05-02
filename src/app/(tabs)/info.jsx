@@ -1,4 +1,4 @@
-import { Stack, router } from "expo-router";
+import { Link, Stack, router } from "expo-router";
 import React from "react";
 import { ImageBackground, View } from "react-native";
 import { Button, Container, Title } from "../../shared/ui";
@@ -6,7 +6,16 @@ import { Button, Container, Title } from "../../shared/ui";
 export default function Info() {
   return (
     <Container>
-      <Stack.Screen options={{ title: "Инфо:" }} />
+      <Stack.Screen
+        options={{
+          title: "Инфо:",
+          headerLeft: () => (
+            <Link style={{ marginLeft: 20, fontSize: 18 }} href={"/"}>
+              Главная
+            </Link>
+          ),
+        }}
+      />
       <ImageBackground
         source={require("../../../assets/images/info.jpg")}
         style={{

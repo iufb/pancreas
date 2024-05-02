@@ -18,6 +18,10 @@ export const CreateMedicineNotificationButton = ({ getMeds }) => {
   const [show, setShow] = useState(false);
   const handleSubmit = async () => {
     if (step == 3) {
+      if (!data.name || !data.count) {
+        sendToast("Не заполнены все поля.Укажите имя и количество.");
+        return;
+      }
       const firstNotId = await sendSchedulePushNotification({
         content: {
           title: "Примите лекарство",
@@ -50,6 +54,7 @@ export const CreateMedicineNotificationButton = ({ getMeds }) => {
         setShow(false);
         getMeds();
         setData({});
+        setStep(1);
       });
     } else {
       setStep(step + 1);
@@ -251,7 +256,10 @@ const ThirdStep = ({ data }) => {
         Проверьте указанную информацию:
       </Subtitle>
       <InfoView name="Название" value={data.name} />
-      <InfoView name="Количество за 1 прием" value={data.count} />
+      <InfoView
+        name="Количество за 1 прием"
+        value={data.count && `${data.count}шт.`}
+      />
       <InfoView name="Первый прием" value={formatTime(data.first)} />
       {data.second && (
         <InfoView name="Второй прием" value={formatTime(data.second)} />
@@ -259,7 +267,3 @@ const ThirdStep = ({ data }) => {
     </View>
   );
 };
-
-// 1.Name
-// 2.Count
-// 3.

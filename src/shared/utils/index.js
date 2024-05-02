@@ -46,6 +46,15 @@ export async function sendSchedulePushNotification({ content, hour, minute }) {
   });
   return id;
 }
+export async function sendNoRepeatNotification({ content, seconds }) {
+  const id = await Notifications.scheduleNotificationAsync({
+    content: { ...content, sound: "default" },
+    trigger: {
+      seconds,
+    },
+  });
+  return id;
+}
 
 export async function cancelScheduledNotification(id) {
   await Notifications.cancelScheduledNotificationAsync(id);
@@ -82,4 +91,30 @@ export const getMealTip = (meal) => {
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
+}
+export function secondsDiffFromDate(inputDate, days) {
+  const dayTOSec = 86400;
+  // Get the current date
+  let currentDate = new Date();
+
+  // Convert both dates to milliseconds
+  let inputDateMs = inputDate.getTime();
+  let currentDateMs = currentDate.getTime();
+
+  // Calculate the difference in milliseconds
+  let timeDiffMs = inputDateMs - currentDateMs;
+
+  // Convert milliseconds to seconds
+  let timeDiffSeconds = Math.floor(timeDiffMs / 1000);
+  let firstNot;
+  if (timeDiffSeconds < 0) {
+    firstNot = dayTOSec + timeDiffSeconds;
+  } else {
+    firstNot = timeDiffSeconds;
+  }
+  const arrOfTime = [];
+  for (let i = 0; i < days; i++) {
+    arrOfTime.push(firstNot + dayTOSec * i);
+  }
+  return arrOfTime;
 }
