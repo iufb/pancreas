@@ -1,6 +1,6 @@
 import { Stack, router } from "expo-router";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, ImageBackground } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { greenColor } from "../shared/constants/Colors";
 import { Container, Title } from "../shared/ui";
@@ -15,20 +15,22 @@ export default function Home() {
           headerBackVisible: false,
         }}
       />
-      <View
+      <ImageBackground
+        source={require("../../assets/images/bg.jpg")}
         style={{
           width: "100%",
-          height: "90%",
+          flex: 1,
           borderRadius: 20,
           alignItems: "center",
+          overflow: "hidden",
           justifyContent: "space-around",
-          paddingTop: 20,
-          backgroundColor: "white",
         }}
       >
-        <Title style={{}}>Здесь название</Title>
+        <Title style={{ fontSize: 40, fontStyle: "italic", color: "white" }}>
+          Pancreas
+        </Title>
         <Animatable.Image
-          animation="rotate"
+          animation="pulse"
           duration={4000}
           iterationCount={"infinite"}
           source={require("../../assets/images/logo.png")}
@@ -37,8 +39,9 @@ export default function Home() {
         <Animatable.View animation="zoomInUp" duration={3000}>
           <Pressable
             style={{
-              backgroundColor: greenColor,
               paddingVertical: 20,
+              borderWidth: 2,
+              borderColor: "white",
               paddingHorizontal: 40,
               borderRadius: 10,
             }}
@@ -54,7 +57,7 @@ export default function Home() {
             </Text>
           </Pressable>
         </Animatable.View>
-      </View>
+      </ImageBackground>
     </Container>
   );
 }

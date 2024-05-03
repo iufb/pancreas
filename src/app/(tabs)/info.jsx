@@ -1,6 +1,7 @@
 import { Link, Stack, router } from "expo-router";
 import React from "react";
 import { ImageBackground, View } from "react-native";
+import { greenColor } from "../../shared/constants/Colors";
 import { Button, Container, Title } from "../../shared/ui";
 
 export default function Info() {
@@ -10,7 +11,15 @@ export default function Info() {
         options={{
           title: "Инфо:",
           headerLeft: () => (
-            <Link style={{ marginLeft: 20, fontSize: 18 }} href={"/"}>
+            <Link
+              style={{
+                marginLeft: 20,
+                fontSize: 18,
+                alignSelf: "center",
+                color: greenColor,
+              }}
+              href={"/"}
+            >
               Главная
             </Link>
           ),

@@ -2,14 +2,14 @@ import { Text, View } from "react-native";
 import { lightGreenColor } from "../constants/Colors";
 import { Icon } from "./Icon";
 
-export const Tip = ({ children }) => {
+export const Tip = ({ children, color, button }) => {
   return (
     <View
       style={{
         borderRadius: 20,
         paddingVertical: 10,
         paddingHorizontal: 12,
-        backgroundColor: lightGreenColor,
+        backgroundColor: color ? color : lightGreenColor,
         flexDirection: "row",
         gap: 10,
         alignItems: "center",
@@ -26,6 +26,7 @@ export const Tip = ({ children }) => {
       >
         {children}
       </Text>
+      {button}
     </View>
   );
 };

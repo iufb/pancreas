@@ -34,7 +34,7 @@ export default function Anketa() {
                 borderRadius: 10,
               }}
               key={idx}
-              onPress={() => handleOpenYoutube(v.url)}
+              onPress={() => handleOpenLink(v.url)}
             >
               <ListItem color="white" content={`${v.desc}`} />
             </TouchableOpacity>
