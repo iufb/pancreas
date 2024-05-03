@@ -21,7 +21,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color }) => (
             <Icon
-              size={36}
+              size={28}
               name="info"
               style={{}}
               color={focused ? "white" : "#193111"}
@@ -38,7 +38,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color }) => (
             <Icon
-              size={36}
+              size={28}
               name="apple"
               color={focused ? "white" : "#193111"}
             />
@@ -54,7 +54,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           headerShown: true,
           tabBarIcon: ({ focused, color }) => (
-            <Icon size={36} name="bell" color={focused ? "white" : "#193111"} />
+            <Icon size={28} name="bell" color={focused ? "white" : "#193111"} />
           ),
         }}
       />
@@ -67,7 +67,7 @@ export default function TabLayout() {
           headerShown: true,
           tabBarIcon: ({ focused, color }) => (
             <Icon
-              size={36}
+              size={25}
               name="heart"
               color={focused ? "white" : "#193111"}
             />
@@ -82,7 +82,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           headerShown: true,
           tabBarIcon: ({ focused, color }) => (
-            <Icon size={36} name="list" color={focused ? "white" : "#193111"} />
+            <Icon size={28} name="list" color={focused ? "white" : "#193111"} />
           ),
         }}
       />

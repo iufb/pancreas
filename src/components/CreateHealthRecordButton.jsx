@@ -22,7 +22,11 @@ export const CreateHealthRecordButton = ({ symptom, stats, setStats }) => {
       >
         <Icon name={"plus"} size={18} color={"white"} />
       </Button>
-      <Modal full open={showModal} close={() => setShowModal(false)}>
+      <Modal
+        full={selected == "bloodPressure"}
+        open={showModal}
+        close={() => setShowModal(false)}
+      >
         <Title style={{ color: "white" }}>{getCurrentDate()}</Title>
         {getContent(selected, changeStats)}
       </Modal>
@@ -201,7 +205,7 @@ const Pain = ({ changeStats }) => {
       <FlatList
         horizontal
         data={painNumbers}
-        contentContainerStyle={{ gap: 10, padding: 20 }}
+        contentContainerStyle={{ gap: 10, padding: 20, flexGrow: 1 }}
         renderItem={({ item }) => (
           <Button
             variant="select"
