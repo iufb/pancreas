@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { darkGreenColor } from "../shared/constants/Colors";
-import { formatTime, getItem } from "../shared/utils";
+import { getItem } from "../shared/utils";
+import { MealTimeView } from "./MealTimeView";
 import { CreateMealNotificationButton } from "./createMealNotificationButton";
 
 export const Meal = ({ meal }) => {
   const [time, setTime] = useState(null);
   useEffect(() => {
     const getSavedTime = async () => {
-      const time = await getItem(meal.value);
-      if (time) {
-        setTime(time.date);
+      const not = await getItem(meal.value);
+      if (not) {
+        setTime(not.date);
       }
     };
     getSavedTime();
@@ -35,25 +36,7 @@ export const Meal = ({ meal }) => {
       >
         {meal.label}
       </Text>
-      {time && (
-        <View
-          style={{
-            paddingHorizontal: 8,
-            paddingVertical: 5,
-            backgroundColor: darkGreenColor,
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "white",
-              fontSize: 19,
-            }}
-          >
-            {formatTime(time)}
-          </Text>
-        </View>
-      )}
+      {time && <MealTimeView setTime={setTime} meal={meal} />}
       <CreateMealNotificationButton setDate={setTime} meal={meal} />
     </View>
   );

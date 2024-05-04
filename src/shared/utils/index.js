@@ -1,6 +1,5 @@
 import Storage from "expo-storage";
 
-import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { mealPlans } from "../../app/diet/about";
 export const setItem = async (key, value) => {
@@ -121,10 +120,9 @@ export function secondsDiffFromDate(inputDate, days) {
 }
 
 export const isNotificationsPermissionsGranted = async () => {
-  if (Device.isDevice) {
-    const { status } = await Notifications.getPermissionsAsync();
-    return status;
-  }
+  const { status } = await Notifications.getPermissionsAsync();
+  console.log(status, "FUNC");
+  return status;
 };
 
 export const askNotificationsPermission = async () => {

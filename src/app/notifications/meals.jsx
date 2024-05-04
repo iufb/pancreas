@@ -14,7 +14,15 @@ export default function Meals() {
           headerLeft: () => <Back />,
         }}
       />
-      <Tip>Интервал между приемами пищи минимум 3 часа.</Tip>
+      <Tip style={{ marginBottom: 10 }}>
+        Интервал между приемами пищи минимум 3 часа.
+      </Tip>
+      <Tip style={{ marginBottom: 10 }}>
+        Нажмите + для добавления уведомления.
+      </Tip>
+      <Tip style={{ marginBottom: 10 }}>
+        Нажмите на сохраненное время чтобы удалить напоминание.
+      </Tip>
       <ScrollView
         contentContainerStyle={{
           gap: 10,

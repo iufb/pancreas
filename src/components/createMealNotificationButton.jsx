@@ -53,7 +53,6 @@ const TimeForm = ({ meal, close, setDate }) => {
     if (prevTime) {
       await cancelScheduledNotification(prevTime.notId);
     }
-    setDate(selected);
     const id = await sendSchedulePushNotification({
       content: {
         title: meal.label,
@@ -66,6 +65,8 @@ const TimeForm = ({ meal, close, setDate }) => {
 
     setItem(meal.value, { date: selected, notId: id }).then(() => {
       sendToast("Напоминание про " + meal.label + " создано!");
+
+      setDate(selected);
       close();
     });
   };

@@ -1,6 +1,6 @@
 import { Stack, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect } from "react";
+import { Image, View } from "react-native";
 import { Button, Container, Tip } from "../../shared/ui";
 import {
   askNotificationsPermission,
@@ -8,10 +8,12 @@ import {
 } from "../../shared/utils";
 
 export default function Notifications() {
-  const [permission, setPermission] = useState(false);
   useEffect(() => {
     isNotificationsPermissionsGranted().then((status) => {
-      setPermission(status == "granted");
+      console.log(status);
+      if (status !== "granted") {
+        alert("Включите уведомления чтобы создавать напоминания");
+      }
     });
   }, []);
   const handleTurnOnPermission = async () => {
@@ -45,7 +47,7 @@ export default function Notifications() {
         Здесь Вы можете установить напоминания для четкого соблюдения всех
         указаний врача.
       </Tip>
-      {!permission && (
+      {/* {!permission && (
         <Tip
           color="#FF7276"
           button={
@@ -59,7 +61,7 @@ export default function Notifications() {
         >
           Включите уведомления, чтобы получать напоминания.
         </Tip>
-      )}
+      )} */}
     </Container>
   );
 }

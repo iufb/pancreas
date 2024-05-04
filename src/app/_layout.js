@@ -45,14 +45,16 @@ export default function RootLayout() {
 
   return <RootLayoutNav />;
 }
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 async function registerForPushNotificationsAsync() {
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: false,
-    }),
-  });
+  await Notifications.cancelAllScheduledNotificationsAsync();
+
   if (Platform.OS === "android") {
     await Notifications.setNotificationChannelAsync("default", {
       name: "default",
@@ -71,13 +73,11 @@ async function registerForPushNotificationsAsync() {
       finalStatus = status;
     }
     if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
+      alert("Включите уведомления чтобы создавать напоминания");
       return;
     }
     // Learn more about projectId:
     // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
-  } else {
-    alert("Must use physical device for Push Notifications");
   }
 }
 

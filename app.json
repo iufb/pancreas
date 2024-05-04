@@ -13,6 +13,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "notification": {
+      "icon": "./assets/images/logo.png"
+    },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
