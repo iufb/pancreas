@@ -12,7 +12,9 @@ export const MedicineView = ({ data, medicine, getMeds }) => {
   return (
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <View>
-        <Text style={{ fontSize: 19 }}>{medicine.name}</Text>
+        <Text style={{ fontSize: 19 }}>
+          {medicine.name} - {medicine.count}шт.
+        </Text>
         <Text>{formatTime(medicine.first)}</Text>
         {medicine.second && <Text>{formatTime(medicine.second)}</Text>}
       </View>
@@ -26,7 +28,7 @@ export const MedicineView = ({ data, medicine, getMeds }) => {
           });
           setItem(
             "meds",
-            data.filter((m) => m.name !== medicine.name)
+            data.filter((m) => m.name !== medicine.name),
           ).then(() => {
             sendToast("Удалено");
             getMeds();

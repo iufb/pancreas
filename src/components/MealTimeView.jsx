@@ -32,6 +32,7 @@ export const MealTimeView = ({ setTime, meal }) => {
           paddingVertical: 5,
           backgroundColor: darkGreenColor,
           justifyContent: "center",
+          borderRadius: 10,
         }}
       >
         <Text

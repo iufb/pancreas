@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Text, View } from "react-native";
-import { lightGreenColor } from "../constants/Colors";
 import { useToast } from "../providers";
-
+import { darkGreenColor } from "../constants/Colors";
 export const Toast = () => {
   const { message, sendToast } = useToast();
   useEffect(() => {
@@ -23,7 +22,7 @@ export const Toast = () => {
           padding: 10,
           borderRadius: 10,
           zIndex: 1000,
-          backgroundColor: lightGreenColor,
+          backgroundColor: darkGreenColor,
         }}
       >
         <Text style={{ color: "white", fontSize: 20 }}>{message}</Text>
