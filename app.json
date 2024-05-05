@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Pancreas",
-    "slug": "template_js",
+    "name": "Панкреатит",
+    "slug": "pancreas",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.iufb.pancreas"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +35,14 @@
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2faa2ce1-7db9-4622-b1d5-112fbc6148eb"
+      }
     }
   }
 }

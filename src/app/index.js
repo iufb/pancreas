@@ -2,7 +2,6 @@ import { Stack, router } from "expo-router";
 import React from "react";
 import { Pressable, Text, ImageBackground } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { greenColor } from "../shared/constants/Colors";
 import { Container, Title } from "../shared/ui";
 
 export default function Home() {
@@ -27,7 +26,7 @@ export default function Home() {
         }}
       >
         <Title style={{ fontSize: 40, fontStyle: "italic", color: "white" }}>
-          Pancreas
+          Панкреатит
         </Title>
         <Animatable.Image
           animation="pulse"
