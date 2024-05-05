@@ -34,7 +34,6 @@ export default function Notifications() {
         }}
         resizeMode="cover"
       />
-
       <View style={{ gap: 10, marginTop: 10 }}>
         <Button onPress={() => router.push("/notifications/medicine")}>
           Лекарства

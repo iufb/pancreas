@@ -1,21 +1,28 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  useWindowDimensions,
+} from "react-native";
 
 export const Input = ({ label, style, ...props }) => {
+  const { fontScale } = useWindowDimensions();
   return (
     <View>
-      <Text style={customStyles.label}>{label}</Text>
-      <TextInput style={[customStyles.input, style]} {...props} />
+      <Text style={customStyles.label(fontScale)}>{label}</Text>
+      <TextInput style={[customStyles.input(fontScale), style]} {...props} />
     </View>
   );
 };
 
 const customStyles = StyleSheet.create({
-  label: {
+  label: (scale) => ({
     color: "white",
-    fontSize: 20,
-  },
-  input: {
-    fontSize: 20,
+    fontSize: 20 / scale,
+  }),
+  input: (scale) => ({
+    fontSize: 20 / scale,
     borderWidth: 1,
     borderColor: "white",
     padding: 10,
@@ -23,5 +30,5 @@ const customStyles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "white",
     borderRadius: 5,
-  },
+  }),
 });

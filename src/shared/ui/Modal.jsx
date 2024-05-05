@@ -1,7 +1,13 @@
-import { Pressable, Modal as RNModal, View } from "react-native";
+import {
+  Pressable,
+  Modal as RNModal,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import { greenColor } from "../constants/Colors";
 import { Icon } from "./Icon";
 export const Modal = ({ children, close, open, full = false }) => {
+  const { fontScale } = useWindowDimensions();
   return (
     <RNModal
       transparent
@@ -12,10 +18,15 @@ export const Modal = ({ children, close, open, full = false }) => {
       <View
         style={{
           position: "absolute",
-          top: full ? 60 : "20%",
+          paddingHorizontal: 5,
+          top: full ? 60 : fontScale > 1.2 ? `${(20 * fontScale) / 2}%` : "20%",
           left: 20,
           right: 20,
-          bottom: full ? 80 : "40%",
+          bottom: full
+            ? 80
+            : fontScale > 1.2
+              ? `${(40 * fontScale) / 2}%`
+              : "40%",
           backgroundColor: greenColor,
           minHeight: 340,
           padding: 20,

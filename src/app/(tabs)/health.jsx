@@ -1,9 +1,9 @@
 import { Link, Stack } from "expo-router";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { CreateHealthRecordButton } from "../../components";
 import { useToast } from "../../shared/providers";
-import { Button, Container, Modal, Tip, Title } from "../../shared/ui";
+import { Button, Container, Content, Modal, Tip, Title } from "../../shared/ui";
 import { getCurrentDate, getItem, setItem } from "../../shared/utils";
 
 export default function Health() {
@@ -19,17 +19,13 @@ export default function Health() {
     bloodPressure: { systolic: 130, diastolic: 85, pulse: 75 },
   });
 
+  const { fontScale } = useWindowDimensions();
+  console.log(fontScale);
+
   return (
     <Container>
       <Stack.Screen options={{ title: "Здоровье:" }} />
-      <View
-        style={{
-          gap: 15,
-          backgroundColor: "white",
-          padding: 10,
-          borderRadius: 20,
-        }}
-      >
+      <Content>
         <Tip>
           Здесь Вы можете отметить Ваше состояние по категориям, указанными
           ниже.
@@ -44,7 +40,7 @@ export default function Health() {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ fontSize: 25, fontWeight: "bold" }}>
+              <Text style={{ fontSize: 25 / fontScale, fontWeight: "bold" }}>
                 {idx + 1}.{s.ru}
               </Text>
               <CreateHealthRecordButton
@@ -64,47 +60,47 @@ export default function Health() {
         >
           Статистика
         </Link>
-        <Modal
-          open={showRes}
-          close={() => setShowRes(false)}
-          full
-          visible={showRes}
-          onDismiss={() => setShowRes(false)}
+      </Content>
+      <Modal
+        open={showRes}
+        close={() => setShowRes(false)}
+        full
+        visible={showRes}
+        onDismiss={() => setShowRes(false)}
+      >
+        <Title style={{ color: "white" }}>{getCurrentDate()}</Title>
+        <Text style={styles.stat}>
+          {symptoms[0].ru}: {stats.painIntensity}
+        </Text>
+        <Text style={styles.stat}>
+          {symptoms[1].ru}:{stats.vomiting ? "ecть" : "нет"}
+        </Text>
+        <Text style={styles.stat}>
+          {symptoms[2].ru}:{stats.nausea ? "ecть" : "нет"}
+        </Text>
+        <Text style={styles.stat}>
+          {symptoms[3].ru}:{stats.abdominalBloating ? "ecть" : "нет"}
+        </Text>
+        <Text style={styles.stat}>
+          {symptoms[4].ru}:{stats.stool}
+        </Text>
+        <Text style={styles.stat}>
+          {symptoms[5].ru}:{stats.bloodPressure.systolic} -{" "}
+          {stats.bloodPressure.diastolic} , {stats.bloodPressure.pulse}
+        </Text>
+        <Button
+          style={{ marginTop: 10 }}
+          variant="outlined"
+          onPress={async () => {
+            saveStats({ ...stats, date: getCurrentDate() }).then(() => {
+              setShowRes(false);
+              sendToast("Запись сохранена");
+            });
+          }}
         >
-          <Title style={{ color: "white" }}>{getCurrentDate()}</Title>
-          <Text style={styles.stat}>
-            {symptoms[0].ru}: {stats.painIntensity}
-          </Text>
-          <Text style={styles.stat}>
-            {symptoms[1].ru}:{stats.vomiting ? "ecть" : "нет"}
-          </Text>
-          <Text style={styles.stat}>
-            {symptoms[2].ru}:{stats.nausea ? "ecть" : "нет"}
-          </Text>
-          <Text style={styles.stat}>
-            {symptoms[3].ru}:{stats.abdominalBloating ? "ecть" : "нет"}
-          </Text>
-          <Text style={styles.stat}>
-            {symptoms[4].ru}:{stats.stool}
-          </Text>
-          <Text style={styles.stat}>
-            {symptoms[5].ru}:{stats.bloodPressure.systolic} -{" "}
-            {stats.bloodPressure.diastolic} , {stats.bloodPressure.pulse}
-          </Text>
-          <Button
-            style={{ marginTop: 10 }}
-            variant="outlined"
-            onPress={async () => {
-              saveStats({ ...stats, date: getCurrentDate() }).then(() => {
-                setShowRes(false);
-                sendToast("Запись сохранена");
-              });
-            }}
-          >
-            Добавить
-          </Button>
-        </Modal>
-      </View>
+          Добавить
+        </Button>
+      </Modal>
     </Container>
   );
 }

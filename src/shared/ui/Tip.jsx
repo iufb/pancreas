@@ -1,8 +1,9 @@
-import { Text, View } from "react-native";
+import { Text, View, useWindowDimensions } from "react-native";
 import { lightGreenColor } from "../constants/Colors";
 import { Icon } from "./Icon";
 
 export const Tip = ({ style, children, color, button }) => {
+  const { fontScale } = useWindowDimensions();
   return (
     <View
       style={[
@@ -23,6 +24,7 @@ export const Tip = ({ style, children, color, button }) => {
       <Text
         style={{
           color: "white",
+          fontSize: 18 / fontScale,
           maxWidth: "80%",
           marginLeft: -10,
         }}

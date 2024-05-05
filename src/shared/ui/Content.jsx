@@ -17,7 +17,9 @@ export const Content = ({ children, refresh }) => {
         gap: 20,
       }}
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        refresh ? (
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        ) : undefined
       }
     >
       {children}

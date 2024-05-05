@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { darkGreenColor, greenColor } from "../constants/Colors";
 
 export const Title = ({ children, style, ...props }) => {
+  const { fontScale } = useWindowDimensions();
   return (
-    <Text style={[styles.title, style]} {...props}>
+    <Text style={[styles.title(fontScale), style]} {...props}>
       {children}
     </Text>
   );
@@ -20,12 +21,12 @@ export const ListItem = ({ content, color }) => {
   );
 };
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
+  title: (scale) => ({
+    fontSize: 24 / scale,
     fontWeight: "bold",
     marginBottom: 10,
     color: greenColor,
-  },
+  }),
   subtitle: { fontSize: 20, fontWeight: "bold", color: darkGreenColor },
   listItem: {
     paddingLeft: 5,

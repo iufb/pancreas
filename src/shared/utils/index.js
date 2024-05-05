@@ -2,6 +2,7 @@ import Storage from "expo-storage";
 
 import * as Notifications from "expo-notifications";
 import { mealPlans } from "../../app/diet/about";
+import { Platform } from "react-native";
 export const setItem = async (key, value) => {
   return Storage.setItem({ key, value: JSON.stringify(value) });
 };
@@ -37,7 +38,10 @@ export function getCurrentDate() {
 }
 export async function sendSchedulePushNotification({ content, hour, minute }) {
   const id = await Notifications.scheduleNotificationAsync({
-    content: { ...content, sound: "default" },
+    content: {
+      ...content,
+      sound: Platform.OS == "android" ? undefined : "default",
+    },
     trigger: {
       hour, // set Hours like date.getHours()
       minute, // set Minutes like date.getMinutes()
@@ -64,27 +68,27 @@ export const getMealTip = (meal) => {
   switch (meal) {
     case "breakfast":
       return mealPlans[randomNumber(0, mealPlans.length)].meals[0].split(
-        "."
+        ".",
       )[1];
     case "snack1":
       return mealPlans[randomNumber(0, mealPlans.length)].meals[1].split(
-        "."
+        ".",
       )[1];
     case "lunch":
       return mealPlans[randomNumber(0, mealPlans.length)].meals[2].split(
-        "."
+        ".",
       )[1];
     case "snack2":
       return mealPlans[randomNumber(0, mealPlans.length)].meals[3].split(
-        "."
+        ".",
       )[1];
     case "dinner":
       return mealPlans[randomNumber(0, mealPlans.length)].meals[4].split(
-        "."
+        ".",
       )[1];
     case "snack3":
       return mealPlans[randomNumber(0, mealPlans.length)].meals[5].split(
-        "."
+        ".",
       )[1];
   }
 };

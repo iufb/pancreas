@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, View, useWindowDimensions } from "react-native";
 import { darkGreenColor } from "../shared/constants/Colors";
 import { Button, Icon, Input, Modal, Title } from "../shared/ui";
 import { getCurrentDate } from "../shared/utils";
@@ -196,7 +196,6 @@ const Vomit = ({ changeStats }) => {
 };
 const Pain = ({ changeStats }) => {
   const [value, setValue] = useState("1");
-
   return (
     <View style={{ gap: 40 }}>
       <Title style={{ color: "white" }}>
